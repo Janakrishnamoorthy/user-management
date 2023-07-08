@@ -1,8 +1,12 @@
 import React from "react";
 
-const Button = ({ title, handleClick }) => {
+const Button = ({ title, handleClick, disabled }) => {
   return (
-    <button className="login" onClick={(e) => handleClick(e)}>
+    <button
+      className="login"
+      onClick={(e) => handleClick(e)}
+      disabled={disabled}
+    >
       {title}
     </button>
   );

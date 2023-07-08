@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import WelcomePage from "./components/static/welcome-page/WelcomePage";
 import Login from "./components/static/login-page/Login";
+import UserDetails from "./components/static/user-details/UserDetails";
 import { USER_DETAILS } from "./helpers/constants";
 import { useEffect } from "react";
 
@@ -16,6 +17,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="login" element={<Login />} />
+          <Route path="userdetails" element={<UserDetails />} />
         </Routes>
         <Outlet />
       </BrowserRouter>

@@ -4,6 +4,7 @@ export const USER_DETAILS = [
     name: "jana",
     role: "superadmin",
     network: "vodafone",
+    password: "krj",
     status: "",
   },
   {
@@ -11,6 +12,7 @@ export const USER_DETAILS = [
     name: "gowtham",
     role: "admin",
     network: "airtel",
+    password: "krg",
     status: "",
   },
   {
@@ -18,6 +20,7 @@ export const USER_DETAILS = [
     name: "rajasekaran",
     role: "user",
     network: "jio",
+    password: "pkr",
     status: "",
   },
   {
@@ -25,6 +28,7 @@ export const USER_DETAILS = [
     name: "padmavathi",
     role: "user",
     network: "airtel",
+    password: "rp",
     status: "",
   },
 ];
