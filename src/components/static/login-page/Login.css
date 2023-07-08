@@ -1,0 +1,9 @@
+.login-maincon {
+  padding: 25%;
+}
+.login-sec {
+  padding: 10%;
+  display: flex;
+  border: 1px solid black;
+  flex-direction: column;
+}

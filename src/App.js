@@ -1,8 +1,26 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import WelcomePage from "./components/static/welcome-page/WelcomePage";
+import Login from "./components/static/login-page/Login";
+import { USER_DETAILS } from "./helpers/constants";
+import { useEffect } from "react";
 
-function App() {
-  return <div className="App"></div>;
-}
+const App = () => {
+  useEffect(() => {
+    localStorage.setItem("userdetails", JSON.stringify(USER_DETAILS));
+    console.log(JSON.stringify(USER_DETAILS));
+  }, []);
+
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="login" element={<Login />} />
+        </Routes>
+        <Outlet />
+      </BrowserRouter>
+    </>
+  );
+};
 
 export default App;
