@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Input from "../../common/Input";
 import Button from "../../common/Button";
+import { useNavigate } from "react-router-dom";
 
 const AddUser = () => {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [network, setNetwork] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleAddUser = () => {
     const storedUserDetails = localStorage.getItem("userdetails");
@@ -36,6 +38,7 @@ const AddUser = () => {
     setRole("");
     setNetwork("");
     setPassword("");
+    navigate("/userdetails");
   };
 
   return (

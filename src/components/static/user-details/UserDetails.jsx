@@ -10,6 +10,11 @@ const UserDetails = () => {
   const [logout, setLogout] = useState(false);
   const navigate = useNavigate();
 
+  const handleNavigate = () => {
+    navigate("/adduser");
+    console.log(navigate);
+  };
+
   useEffect(() => {
     if (!localStorage.getItem("auth")) navigate("/login");
 
@@ -44,7 +49,7 @@ const UserDetails = () => {
   return (
     <div>
       <h2>Welcome, {currentUser}</h2>
-      <Button title={"Add user"} />
+      <Button title={"Add user"} handleClick={handleNavigate} />
       <table className="center">
         <thead>
           <tr>
