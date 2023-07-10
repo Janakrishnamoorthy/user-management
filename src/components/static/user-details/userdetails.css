@@ -1,0 +1,12 @@
+th,
+td,
+tr {
+  border: 1px solid;
+  padding: 3%;
+  width: 10%;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+}

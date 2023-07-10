@@ -11,7 +11,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("triggers");
+    // console.log("triggers");
+    if (localStorage.getItem("auth")) navigate("/userdetails");
+
     if (
       username &&
       !password &&
@@ -31,31 +33,32 @@ const Login = () => {
     } else {
       setEnable(false);
     }
-    console.log(
-      Object.values(JSON.parse(localStorage.getItem("userdetails"))).filter(
-        (i) => i.name === username
-      )[0]?.password === password
-    );
+    // console.log(
+    //   Object.values(JSON.parse(localStorage.getItem("userdetails"))).filter(
+    //     (i) => i.name === username
+    //   )[0]?.password === password
+    // );
   }, [username, password]);
 
   const handleLogin = () => {
-    // const storedUserDetails = localStorage.getItem("userdetails");
-    // if (storedUserDetails) {
-    //   const userDetails = JSON.parse(storedUserDetails);
-    //   const user = userDetails.find(
-    //     (user) => user.name === username && user.password === password
-    //   );
-    //   console.log("Entered username:", username);
-    //   console.log("Entered password:", password);
-    //   if (user) {
-    //     console.log("Login successful!");
-    //     navigate("/");
-    //   } else {
-    //     console.log("Invalid username or password");
-    //   }
-    // } else {
-    //   console.log("User details not found");
-    // }
+    const storedUserDetails = localStorage.getItem("userdetails");
+    if (storedUserDetails) {
+      const userDetails = JSON.parse(storedUserDetails);
+      const user = userDetails.find(
+        (user) => user.name === username && user.password === password
+      );
+      console.log("Entered username:", username);
+      console.log("Entered password:", password);
+      if (user) {
+        localStorage.setItem("auth", true);
+        console.log("Login successful!");
+        navigate("/userdetails");
+      } else {
+        console.log("Invalid username or password");
+      }
+    } else {
+      console.log("User details not found");
+    }
   };
 
   return (
@@ -73,7 +76,12 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button title={"Login"} handleClick={handleLogin} disabled={!enable} />
+        <Button
+          className="login"
+          title={"Login"}
+          handleClick={handleLogin}
+          disabled={!enable}
+        />
       </div>
     </div>
   );

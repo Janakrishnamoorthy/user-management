@@ -1,27 +1,85 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./userdetails.css";
+import Button from "../../common/Button";
 
 const UserDetails = () => {
+  const [userDetails, setUserDetails] = useState([]);
+  const [currentUser, setCurrentUser] = useState("");
+  // const [authUser, setAuthUser] = useState("");
+  const [logout, setLogout] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("auth")) navigate("/login");
+
+    const storedUserDetails = localStorage.getItem("userdetails");
+    if (storedUserDetails) {
+      const userDetails = JSON.parse(storedUserDetails);
+      setUserDetails(userDetails);
+    }
+
+    const storedCurrentUser = localStorage.getItem("CurrentUser");
+    if (storedCurrentUser) {
+      setCurrentUser(storedCurrentUser);
+    }
+
+    // const storedAuthUser = localStorage.getItem("auth");
+    // if (storedAuthUser) {
+    //   setAuthUser(storedAuthUser);
+    // }
+  }, [logout]);
+
+  const handleLogout = (e) => {
+    localStorage.removeItem("auth");
+    setLogout(true);
+  };
+
+  const handleDelete = (id) => {
+    const deletedUserDetails = userDetails.filter((user) => user.id !== id);
+    setUserDetails(deletedUserDetails);
+    localStorage.setItem("userdetails", JSON.stringify(deletedUserDetails));
+  };
+
   return (
-    // <div>
-    //   <table>
-    //     <thead>
-    //       <tr>
-    //         <th>Name</th>
-    //         <th>Role</th>
-    //         <th>Status</th>
-    //         <th>Network</th>
-    //       </tr>
-    //       <tr>
-    //         <td></td>
-    //         <td></td>
-    //         <td></td>
-    //         <td></td>
-    //       </tr>
-    //     </thead>
-    //   </table>
-    // </div>
-    <>
-      <button
+    <div>
+      <h2>Welcome, {currentUser}</h2>
+      <Button title={"Add user"} />
+      <table className="center">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Network</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userDetails.map((user) => (
+            <tr key={user.id}>
+              <td>{user.name}</td>
+              <td>{user.role}</td>
+              <td></td>
+              <td>{user.network}</td>
+              <td>
+                {/* <Button
+                  title={"Edit"}
+                  handleClick={handleEdit}
+                  disabled={true}
+                /> */}
+                <Button
+                  title={"Delete"}
+                  handleClick={() => handleDelete(user.id)}
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <Button title={"Logout"} handleClick={handleLogout} />
+
+      {/* <button
         onClick={() => {
           localStorage.setItem("value", JSON.stringify("example"));
         }}
@@ -48,8 +106,8 @@ const UserDetails = () => {
         }}
       >
         clear local storage
-      </button>
-    </>
+      </button> */}
+    </div>
   );
 };
 
