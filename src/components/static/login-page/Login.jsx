@@ -12,7 +12,7 @@ const Login = () => {
 
   useEffect(() => {
     // console.log("triggers");
-    if (localStorage.getItem("auth")) navigate("/userdetails");
+    if (localStorage.getItem("auth")) navigate("/user-details");
 
     if (
       username &&
@@ -50,9 +50,9 @@ const Login = () => {
       console.log("Entered username:", username);
       console.log("Entered password:", password);
       if (user) {
+        navigate("/user-details");
         localStorage.setItem("auth", true);
         console.log("Login successful!");
-        navigate("/userdetails");
       } else {
         console.log("Invalid username or password");
       }

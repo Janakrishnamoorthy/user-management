@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./userdetails.css";
 import Button from "../../common/Button";
+import { TABLE } from "../../../helpers/constants";
 
 const UserDetails = () => {
   const [userDetails, setUserDetails] = useState([]);
@@ -11,7 +12,7 @@ const UserDetails = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/adduser");
+    navigate("/add-user");
     console.log(navigate);
   };
 
@@ -45,7 +46,8 @@ const UserDetails = () => {
     setUserDetails(deletedUserDetails);
     localStorage.setItem("userdetails", JSON.stringify(deletedUserDetails));
   };
-
+  const headers = [...new Set(TABLE.map((i) => Object.keys(i)))];
+  console.log(headers);
   return (
     <div>
       <h2>Welcome, {currentUser}</h2>
@@ -113,6 +115,14 @@ const UserDetails = () => {
         clear local storage
       </button> */}
     </div>
+    // <table>
+    //   <thead>
+    //     {headers.map((i) => (
+    //       <tr>{i}</tr>
+    //     ))}
+    //   </thead>
+    //   <tbody></tbody>
+    // </table>
   );
 };
 

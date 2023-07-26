@@ -38,11 +38,11 @@ const AddUser = () => {
     setRole("");
     setNetwork("");
     setPassword("");
-    navigate("/userdetails");
+    navigate("/user-details");
   };
 
   return (
-    <div>
+    <div className="adduser-main">
       <h2>Add User</h2>
       <form>
         <Input

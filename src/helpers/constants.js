@@ -32,3 +32,24 @@ export const USER_DETAILS = [
     status: "",
   },
 ];
+
+export const ROUTES = {
+  welcomePage: "/",
+  login: "/login",
+  userDetails: "/user-details",
+  addUser: "/add-user",
+};
+
+export const TABLE = [
+  {
+    id: 0,
+    name: "jana",
+    role: "super admin",
+    status:
+      JSON.parse(localStorage.getItem("currentUser")) === "jana"
+        ? "logged in"
+        : "logged out",
+    network: "vodafone",
+    actions: <button>delete</button>,
+  },
+];
